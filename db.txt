@@ -1,0 +1,261 @@
+-- USER TABLE
+create table userDetails
+(
+    fname varchar(60) not null,
+    lname varchar(60) not null,
+    user_id varchar(20) not null,
+    dob date not null,
+    premium_user boolean not null,
+    user_city varchar(20) not null,
+    user_state varchar(20) not null,
+    landmark varchar(20) not null,
+    pincode int not null,
+    user_email varchar(255) not null unique,
+    primary key(user_id)
+);
+
+insert into userDetails
+values
+    ("test", "admin", "id001", 20230331, false, "diu", "gujarat", "iiitvicd", 362520, "deependraraliya15@gmail.com"),
+    ("test", "admin", "id002", 20230331, false, "diu", "gujarat", "iiitvicd", 362520, "deependra03@gmail.com");
+insert into userDetails
+values
+    ("Didhit", "Patel", "id003", 20230331, false, "diu", "gujarat", "iiitvicd", 362520, "user1@gmail.com"),
+    ("Devesh", "Sharma", "id005", 20230331, false, "diu", "gujarat", "iiitvicd", 362520, "user2@gmail.com"),
+    ("Prachi", "Gurav", "id006", 20230331, false, "diu", "gujarat", "iiitvicd", 362520, "user3@gmail.com"),
+    ("Deependra", "Raliya", "id007", 20230331, false, "diu", "gujarat", "iiitvicd", 362520, "user4@gmail.com"),
+    ("Prathamesh", "Goyal", "id008", 20230331, false, "diu", "gujarat", "iiitvicd", 362520, "user5@gmail.com");
+
+
+create table user_cart
+(
+    user_id varchar(255) not null,
+    cart_id varchar(20) not null unique,
+    primary key(user_id),
+    foreign key(user_id) references user_auth(user_email)
+);
+
+insert into user_cart
+VALUES
+    ("useradmin@test", "cid001"),
+    ("cartuser@test", "cid002");
+insert into user_cart
+VALUES
+    ("test1@test", "cid0044"),
+    ("test2@test", "cid0034"),
+    ("test3@test", "cid0043"),
+    ("test4@test", "cid0053");
+
+create table cart_items
+(
+    cart_id varchar(20) not null,
+    p_id varchar(20) not null,
+    quantity int DEFAULT 0 not null,
+    foreign key(p_id) references product(p_id),
+    foreign key(cart_id) references user_cart(cart_id)
+);
+
+create table cart_items(
+    user_id varchar(20) not null,
+    p_id varchar(20) not null,
+    quantity int DEFAULT 0 not null,
+    foreign key(user_id) references user_auth(user_email),
+    foreign key(p_id) references product(p_id),
+    primary key(user_id, p_id)
+);
+
+insert into cart_items
+values
+    ("cid0044", "id001", 2),
+    ("cid0034", "kpid101", 1),
+    ("cid0043", "kpid102", 4),
+    ("cid0053", "kpid111", 1);
+insert into cart_items
+values
+    ("cid020", "id001", 2),
+    ("cid021", "kpid011", 2),
+    ("cid022", "id002", 1),
+    ("cid023", "id002", 1),
+    ("cid23", "id002", 1),
+    ("cid025", "id001", 1);
+
+create table user_auth
+(
+    username varchar(60) not null UNIQUE,
+    user_email varchar(255) not null,
+    user_password varchar(50) not null,
+    primary key(user_email)
+);
+
+insert into user_auth
+VALUES
+    ("useradmin", "useradmin@test", "admin"),
+    ("carttest", "cartuser@test", "admin"),
+    ("otheruseradmin", "otheruser@test", "admin"),
+    ("test1", "test1@test", "admin"),
+    ("test2", "test2@test", "admin"),
+    ("test3", "test3@test", "admin"),
+    ("test4", "test4@test", "admin");
+
+-- PRODUCT TABLE
+create table product
+(
+    seller_id varchar(255) not null,
+    p_id VARCHAR(20) not null,
+    p_name varchar(60) not null,
+    p_price int not null,
+    p_descr VARCHAR(200) NOT NULL,
+    category varchar(20) not null,
+    primary key (p_id),
+    foreign key(seller_id) REFERENCES seller_auth(seller_email)
+);
+
+insert into product
+values
+    ("admin@test", "id001", "noodles by maggi 1 serving pack", 12, "noodles by maggi, 1 serving pack", "kitchen"),
+    ("admin@test", "id002", "noodles by maggi 4 serving pack", 45, "noodles by maggi, 4 serving pack", "kitchen"),
+    ("admin@test", "kpid101", "Men's face wash", 120, "Men's face wash with activated charcoal", "personalCare"),
+    ("admin@test", "kpid102", "Room freshner", 300, "Anti bacterial room freshner", "personalCare"),
+    ("admin@test", "kpid111", "120W ultrafast charger", 600, "120 W ultrafast charger with 3 A transfer type C cable", "electronics"),
+    ("admin@test", "kpid112", "Electric kettle", 1800, "Electric kettle by phillips", "electronics"),
+    ("admin@test", "kpid011", "Tshirt by cottonking", 600, "Full size T shirt pure cotton", "clothing"),
+    ("admin@test", "kpid012", "US polo assn. jacket", 3200, "US polo assn. jacket available in 2 colors and 3 sizes", "clothing");
+
+-- SELLER AUTH TABLE
+create table seller_auth
+(
+    seller_username varchar(60) not null UNIQUE,
+    seller_email varchar(255) not null,
+    seller_password varchar(50) not null,
+    primary key(seller_email)
+);
+
+insert into seller_auth
+values
+    ("admin@", "admin@test", "admin");
+insert into seller_auth
+values
+    ("other@", "other@test", "admin");
+
+-- SELLER TABLE
+create table seller
+(
+    seller_id varchar(20) not null,
+    seller_name varchar(60) not null,
+    seller_email varchar(255) not null unique,
+    primary key(seller_id)
+);
+
+insert into seller
+values
+    ("id001", "admin", "deependraraliya15@gmail.com"),
+    ("id002", "admin", "deependraraliya03@gmail.com");
+
+
+-- ORDER DETAILS TABLE
+create table user_orders
+(
+    order_id varchar(50) not null,
+    user_id varchar(20) not null,
+    order_status varchar(50) not null,
+    primary key(order_id),
+    foreign key(user_id) references user_auth(user_email)
+);
+
+insert into user_orders VALUES
+("ord001", "useradmin@test", "delivered"),
+("ord099", "useradmin@test", "pending"),
+("ord002", "useradmin@test", "pending");
+
+create table order_details(
+    order_id varchar(50) not null,
+    p_id varchar(20) not null,
+    quantity int not null,
+    primary key(order_id, p_id),
+    foreign key(order_id) references user_orders(order_id),
+    foreign key(p_id) references product(p_id)
+);
+
+insert into order_details VALUES
+("ord001", "kpid011", 2),
+("ord001", "kpid012", 1);
+
+create table user_address(
+    user_id varchar(20) not null,
+    pincode int not null,
+    primary key(user_id),
+    foreign key(user_id) references user_auth(user_email),
+    foreign key (pincode) references pincode_data(pincode)
+);
+
+create table pincode_data(
+    pincode int not null,
+    city_name varchar(35) not null,
+    state_name varchar(35) not null,
+    primary key(pincode)
+)
+
+insert into user_address values
+("useradmin@test", 362520),
+("cartuser@test", 342001),
+("test1@test", 380001),
+("test2@test", 380002);
+
+insert into pincode_data values
+(362520, "diu", "gujarat"),
+(342001, "jodhpur", "rajasthan"),
+(380001, "ahmedabad", "gujarat"),
+(380002, "ahmedabad", "gujarat");
+
+
+-- USER CONTACT DETAILS TABLE
+create table user_contact_details
+(
+    contact_no varchar(10) not null unique,
+    user_id varchar(20) not null,
+    foreign key(user_id) references userDetails(user_id)
+);
+
+insert into user_contact_details
+values
+    ("9762617914", "id001"),
+    ("9762617913", "id002"),
+    ("9624447102", "id003");
+
+-- SHIPPING AGENCY DETAILS TABLE
+create table shipping_agency
+(
+    agency_id varchar(20) not null,
+    agency_name varchar(60) not null,
+    user_id varchar(20) not null,
+    order_id varchar(20) not null,
+    foreign key(user_id) references user_details(user_id),
+    foreign key(order_id) references order_details(order_id)
+);
+
+-- QUERIES
+SELECT t3.*, t12.*
+FROM product t3
+    INNER JOIN (
+  SELECT t1.user_id, t1.cart_id, t2.p_id, t2.quantity
+    FROM user_cart t1
+    INNER JOIN cart_items t2 ON t1.cart_id = t2.cart_id
+) t12 ON t3.p_id = t12.p_id
+where (cart_id = "cid002");
+
+SELECT t3.*, t12.*
+FROM product t3
+    INNER JOIN (
+  SELECT t1.user_id, t1.cart_id, t2.p_id, t2.quantity
+    FROM user_cart t1
+    INNER JOIN cart_items t2 ON t1.cart_id = t2.cart_id
+) t12 ON t3.p_id = t12.p_id;
+
+
+
+
+-- JOIN user_cart and cart_items to create a table that has no cart_id
+SELECT t1.user_id, t2.p_id, t2.quantity
+FROM user_cart t1
+INNER JOIN cart_items t2
+ON t1.cart_id = t2.cart_id;
