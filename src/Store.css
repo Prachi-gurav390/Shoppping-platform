@@ -1,0 +1,127 @@
+.searchBar{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    height: 7vh;
+    width: 80vw;
+    background-color:rgb(0, 0, 0);
+    transform: translate(-50%, 0%);
+    color: white;
+    font-weight: 600;
+    padding-left: 1%;
+}
+
+.searchBar:hover{
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0px 3px 6px rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.pIDs{
+    position: relative;
+    background-color:rgb(0, 0, 0);
+    width: 90vw;
+    color: white;
+    font-weight: 600;
+    left: 49.5%;
+    transform: translate(-50%, 0%);
+}
+
+/* colors
+    //#0172f5 - darker blue
+    //#00baf3 - lighter blue
+    //#f46e32 - dominant orange
+    //#f4a233 - light orange
+    //#f3ebe7 - ivory
+
+*/
+
+
+.productGridContainer{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #f46e32;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    height: 80vh;
+    width: 78vw;
+    row-gap: 2%;
+    column-gap: 1%;
+    padding: 1%;
+}
+
+.item1{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    background-color: #f4a233;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+}
+.item2{
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    background-color: #f4a233;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+}
+.item3{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: #f4a233;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+}
+.item4{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: #f4a233;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+.addProduct{
+    position: fixed;
+    top: 90%;
+    left: 80%;
+    box-shadow: 0px 3px 6px black;
+    height: 6vh;
+    width: 10vw;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: white;
+}
+
+.noStyle{
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.itemContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.mappedElement{
+    border: 2px solid black;
+    height: 35vh;
+    width: 40vw;
+    margin: 5px;
+}

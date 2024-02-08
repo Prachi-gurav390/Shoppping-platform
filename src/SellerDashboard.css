@@ -1,0 +1,42 @@
+.SDBcont{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+}
+
+.SDBitem{
+    background-color: rgb(132, 22, 172);
+    height: 30vh;
+    color: white;
+    font-size: xx-large;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.flexItem{
+    margin: 20px;
+}
+
+.fixedBtn{
+    position: fixed;
+    top: 90%;
+    left: 80%;
+    box-shadow: 0px 3px 6px black;
+    height: 6vh;
+    width: 10vw;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: white;
+}

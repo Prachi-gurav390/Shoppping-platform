@@ -1,0 +1,52 @@
+.signElement{
+    margin: 20px 20px;
+    padding: 20px 20px;
+    border: 1px solid black;
+    box-shadow: 0px 3px 6px;
+}
+
+.signContainer{
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    display: flex;
+    min-height: 30vh;
+    width: 60vw;
+    box-shadow: 0px 5px 10px #7c7c7c;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.signContainer2{
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    display: flex;
+    min-height: 30vh;
+    width: 60vw;
+    box-shadow: 0px 5px 10px #7c7c7c;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+p{
+    margin-left: 2%;
+}
+
+.formContainer{
+    /* position: absolute; */
+    height: 80%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.formElement{
+    min-height: 25px;
+    width: 40%;
+    text-align: center;
+    margin-bottom: 5px;
+}

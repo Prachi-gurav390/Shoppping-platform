@@ -1,0 +1,21 @@
+.navbar{
+    position: relative;
+    top: 2%;
+    height: 8vh;
+    width: 96vw;
+    box-shadow: 0px 4px 8px #000000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 6vh;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-color: white;
+}
+
+.element{
+    color: black;
+    font-weight: 600;
+    margin: 0px 8px;
+    padding: 2px 6px;
+}
